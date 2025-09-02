@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom'
 const UserLogout = () => {
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
-    axios.get(`http://localhost:8080/user/logout`,{
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }).then((response) => {
+   axios.get(`${process.env.REACT_APP_BACKEND_PORT}/user/logout`,{
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+}).then((response) => {
         if (response.status === 200 || response.status === 201) {
             localStorage.removeItem('token')
             navigate('/login')
